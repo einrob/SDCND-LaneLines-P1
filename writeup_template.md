@@ -1,21 +1,13 @@
-# **Finding Lane Lines on the Road** 
+# **Finding Lane Lines on the Road - Writeup** 
 
-## Writeup Template
-
-### You can use this file as a template for your writeup if you want to submit it as a markdown file. But feel free to use some other method and submit a pdf if you prefer.
 
 ---
 
 **Finding Lane Lines on the Road**
 
-The goals / steps of this project are the following:
-* Make a pipeline that finds lane lines on the road
-* Reflect on your work in a written report
-
-
-[//]: # (Image References)
-
-[image1]: ./examples/grayscale.jpg "Grayscale"
+The goals of this project are the following:
+* Implement a pipeline that finds lane lines on the road using canny edge detection and hough transformation 
+* Try to filter detection to stabilize lane estimation 
 
 ---
 
@@ -32,16 +24,16 @@ If you'd like to include images to show how the pipeline works, here is how to i
 ![alt text][image1]
 
 
-### 2. Identify potential shortcomings with your current pipeline
+### 2. Shortcomings of pipeline 
+
+* Lines can only represent straight line marking geometries accurately 
+* Fixed ROI size does not adapt to curves, hills and ditches (change of gemetry of lane markings) 
+* Fixed parameters for canny edge detection and hough transformation only apply to this test set of images 
+* Generally this pipeline is trimmed to work with the given test set of images and surely is going to fail with other test sets with different weather and light conditions 
+* Only rudimentary plausibility checks are made on detected lines  
 
 
-One potential shortcoming would be what would happen when ... 
+### 3. Suggest possible improvements 
 
-Another shortcoming could be ...
-
-
-### 3. Suggest possible improvements to your pipeline
-
-A possible improvement would be to ...
-
-Another potential improvement could be to ...
+* If no line is detected for left OR right 
+** 
