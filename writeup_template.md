@@ -18,11 +18,12 @@ The goals of this project are the following:
 Following steps are performed on each input image of the image stream: 
 
 * Converted input image to grayscale 
-* Blurred image to reduce high frequency information (noise or smaller gradients) which helps canny to detect strong edges 
-* Applied canny edge detection algorithm to the blurred grayscale image 
-* Applied hough transformation and line detection on edge image 
-* Iterate through all detected lines and calculate slope 
+* Blur grayscale image to reduce high frequency image information (noise or smaller gradients) which helps canny to detect only strong gradients 
+* Apply canny edge detection algorithm to the blurred grayscale image 
+* Apply hough line detection on edge image 
+* Iterate through all detected lines and calculate slope
 * Distinguish between left line and right line using calculated slope (left = positive slope, right = negative slope)
+* Average line slopes for left and right line using the Welford online algorithm (https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance)
 * Using y=kx+d line equation to do calculations 
 * Calculate intersection with y-Axis d (left border of image) 
 * Calculate coordinates of intersection of estimated left and right line with bottom edge of image
@@ -30,6 +31,7 @@ Following steps are performed on each input image of the image stream:
 * Drawing estimated lines using draw_lines function at calculated coordinates on a blank copy of the input image 
 * Overlay image with estimated lines and input image for visualiziation using weighted_img function 
 
+To stabilize 
 
 
 ### 2. Shortcomings of pipeline 
