@@ -6,25 +6,36 @@
 **Finding Lane Lines on the Road**
 
 The goals of this project are the following:
-* Implement a pipeline that finds lane lines on the road using canny edge detection and hough transformation 
+* Implement a pipeline that finds lane lines on the road surface using canny edge detection and hough transformation 
 * Try to filter detection to stabilize lane estimation 
 
 ---
 
 ### Reflection
 
-### 1. Describe your pipeline. As part of the description, explain how you modified the draw_lines() function.
+### 1. Implemented pipeline
 
-My pipeline consisted of 5 steps. First, I converted the images to grayscale, then I .... 
+Following steps are performed on each input image of the image stream: 
 
-In order to draw a single line on the left and right lanes, I modified the draw_lines() function by ...
+* Converted input image to grayscale 
+* Blurred image to reduce high frequency information (noise or smaller gradients) which helps canny to detect strong edges 
+* Applied canny edge detection algorithm to the blurred grayscale image 
+* Applied hough transformation and line detection on edge image 
+* Iterate through all detected lines and calculate slope 
+* Distinguish between left line and right line using calculated slope (left = positive slope, right = negative slope)
+* Using y=kx+d line equation to do calculations 
+* Calculate intersection with y-Axis d (left border of image) 
+* Calculate coordinates of intersection of estimated left and right line with bottom edge of image
+* Calculate coodinates of intersction of estimated left and right line at specific image height (neat corping of lines)
+* Drawing estimated lines using draw_lines function at calculated coordinates on a blank copy of the input image 
+* Overlay image with estimated lines and input image for visualiziation using weighted_img function 
 
-If you'd like to include images to show how the pipeline works, here is how to include an image: 
+
 
 ### 2. Shortcomings of pipeline 
 
 * Lines can only represent straight line marking geometries accurately 
-* Fixed ROI size does not adapt to curves, hills and ditches (change of gemetry of lane markings) 
+* Fixed ROI size does not adapt to curves, hills and ditches (change of geometry of lane markings) 
 * Fixed ROI position does not reflect lateral movement of the car 
 * The fixed ROI was shortened to compensate camera pitch movement - this leads to loss of valuable edge data of the lane markings in regions ahead 
 * Fixed parameters for canny edge detection and hough transformation only apply to this test set of images 
