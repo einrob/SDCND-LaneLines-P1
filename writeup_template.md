@@ -47,6 +47,7 @@ I tried to stabilize the line slopes and intersection points of the calculated l
 * Generally this pipeline is trimmed to work with the given test set of images and surely is going to fail with other test sets with different weather, light and traffic conditions 
 * Only rudimentary plausibility checks are made on detected lines  
 * Lines are represented with y = kx+d which can lead to numerical problems when horizontal or vertical lines appear
+* The filter needs some time to converge when initialization values are way off 
 
 ### 3. Suggest possible improvements 
 
