@@ -42,6 +42,7 @@ I tried to stabilize the line slopes and intersection points of the calculated l
 * Fixed ROI size does not adapt to curves, hills and ditches (change of geometry of lane markings when pitch angle of the camera changes relative to the ground plane) 
 * Fixed ROI position does not reflect lateral movement of the car - car is not always moving exactly in the middle of the lane
 * The fixed ROI was shortened to compensate camera pitch movement - this leads to loss of valuable edge data of the lane markings in regions further ahead 
+* ROI includes a large image area between the lane markings - detections in this area are not very useful for the lane geometry approximation 
 * Fixed parameters for canny edge detection and hough transformation only apply to this test set of images 
 * Generally this pipeline is trimmed to work with the given test set of images and surely is going to fail with other test sets with different weather, light and traffic conditions 
 * Only rudimentary plausibility checks are made on detected lines  
